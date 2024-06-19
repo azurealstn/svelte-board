@@ -3,6 +3,7 @@
 
   import AccessControl from './pages/AccessControl.svelte';
   import DataModel from './pages/DataModel.svelte';
+  import DataModelRegist from './pages/DataModelRegist.svelte';
   import DataSet from './pages/DataSet.svelte';
   import ExternalPlatform from './pages/ExternalPlatform.svelte';
   import ProvisionServer from './pages/ProvisionServer.svelte';
@@ -13,6 +14,7 @@
 <Route path='/' redirect='/DataModel' />
 <Route path='/AccessControl'><AccessControl /></Route>
 <Route path='/DataModel'><DataModel /></Route>
+<Route path='/DataModelRegist'><DataModelRegist /></Route>
 <Route path='/DataSet'><DataSet /></Route>
 <Route path='/ExternalPlatform'><ExternalPlatform /></Route>
 <Route path='/ProvisionServer'><ProvisionServer /></Route>

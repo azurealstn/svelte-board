@@ -1,9 +1,12 @@
 <script>
   import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
   let activeUrl = window.location.pathname;
+  if (activeUrl.includes('DataModel')) {
+    activeUrl = '/DataModel';
+  }
 </script>
 
-<Navbar  >
+<Navbar>
   <NavBrand href="/">
     <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
       City Data Hub

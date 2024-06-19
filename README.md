@@ -1,3 +1,30 @@
+## 실행하기
+
+1. 다운받아서 압축 풀기
+
+```javascript
+Download ZIP
+```
+
+2. VS code 열기
+
+```javascript
+확장 프로그램 설치:
+Svelte for VS Code
+```
+
+3. 라이브러리 설치
+
+```javascript
+npm install
+```
+
+4. 실행하기
+
+```javascript
+npm run dev
+```
+
 # Svelte
 
 Svelte(스벨트)는 컴파일러 기반으로 실행되는 프레임워크입니다. 이는 Virtual DOM이 없고, Runtime에 로드할 프레임워크가 없음을 의미합니다.
@@ -129,7 +156,7 @@ API 통신할 때 반복되는 코드들이 있는데 이를 어떻게 하면 �
 - 전역상태를 어떻게 관리할지 고민 필요 
 - (스벨트에도 Store라는 API 제공하며, 전반적으로 학습이 필요함 - 패턴이 있는 것 같음)
 
-### 5. 배포, 유지보수, 테스트
+### 5. 개발 환경
 
 - 테스트 환경을 구축해야 하는데 현재 Swagger API 통신을 하면 CORS 에러가 발생해서 테스트가 힘듬.
 

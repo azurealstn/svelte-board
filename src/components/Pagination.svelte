@@ -44,7 +44,7 @@
       <button
         on:click={() => handlePageChange(currentPage + 1)} 
         class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700" 
-        disabled={currentPage === totalPages}>
+        disabled={currentPage === totalPages || totalPages === 0}>
         Next
       </button>
     </li>
@@ -52,7 +52,7 @@
       <button 
         on:click={() => handlePageChange(totalPages)} 
         class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700" 
-        disabled={currentPage === totalPages}>
+        disabled={currentPage === totalPages || totalPages === 0}>
         Last
       </button>
     </li>

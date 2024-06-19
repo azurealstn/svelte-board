@@ -4,6 +4,7 @@
 
   import Header from '../components/Header.svelte'
   import Pagination from '../components/Pagination.svelte';
+  import RegistButton from '../components/RegistButton.svelte';
 
   // API 통신
   import axios from 'axios'
@@ -27,6 +28,9 @@
       const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${limit}&q=${searchTerm}`);
       dataModels = response.data;
       totalPages = Math.ceil(response.headers['x-total-count'] / limit);
+      if (totalPages < currentPage) {
+        currentPage = 1;
+      }
     } catch (err) {
       alert('에러가 발생하였습니다. \n관리자에게 문의해주세요.');
     } finally {
@@ -63,39 +67,59 @@
 <Header />
 
 <div class="m-20">
-  <div class="flex items-center justify-between">
+  <div class="mb-3 flex items-center justify-between">
     <h1>DataModel</h1>
     <!-- 이벤트 리스너: on:click, onkeydown 등등 -->
     <!-- 함수나 변수 적용 문법: {} 중괄호 안에 적는다. -->
     <button 
       on:click={openModal} 
       class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
-        Open Search Modal
+        상세검색
     </button>
   </div>
 
-  <Table>
-    <TableHead>
-      <TableHeadCell>userId</TableHeadCell>
-      <TableHeadCell>id</TableHeadCell>
-      <TableHeadCell>title</TableHeadCell>
-      <TableHeadCell>body</TableHeadCell>
-    </TableHead>
-    <TableBody tableBodyClass="divide-y">
-      <!-- 반복문 -->
-      {#each dataModels as dataModel}
+  {#if dataModels.length === 0}
+    <Table>
+      <TableHead>
+        <TableHeadCell>userId</TableHeadCell>
+        <TableHeadCell>id</TableHeadCell>
+        <TableHeadCell>title</TableHeadCell>
+        <TableHeadCell>body</TableHeadCell>
+      </TableHead>
+      <TableBody tableBodyClass="divide-y">
         <TableBodyRow>
-          <TableBodyCell>{dataModel.userId}</TableBodyCell>
-          <TableBodyCell>{dataModel.id}</TableBodyCell>
-          <TableBodyCell>{dataModel.title}</TableBodyCell>
-          <TableBodyCell>{dataModel.body}</TableBodyCell>
+          <TableBodyCell>데이터가 없습니다.</TableBodyCell>
         </TableBodyRow>
-      {/each}
-    </TableBody>
-  </Table>
+      </TableBody>
+    </Table>
+  {:else}
+    <Table>
+      <TableHead>
+        <TableHeadCell>userId</TableHeadCell>
+        <TableHeadCell>id</TableHeadCell>
+        <TableHeadCell>title</TableHeadCell>
+        <TableHeadCell>body</TableHeadCell>
+      </TableHead>
+      <TableBody tableBodyClass="divide-y">
+        <!-- 반복문 -->
+        {#each dataModels as dataModel}
+          <TableBodyRow>
+            <TableBodyCell>{dataModel.userId}</TableBodyCell>
+            <TableBodyCell>{dataModel.id}</TableBodyCell>
+            <TableBodyCell>{dataModel.title}</TableBodyCell>
+            <TableBodyCell>{dataModel.body}</TableBodyCell>
+          </TableBodyRow>
+        {/each}
+      </TableBody>
+    </Table>
+  {/if}
 
   <!-- Props 사용 -->
   <Pagination {currentPage} {totalPages} on:pageChange={e => changePage(e.detail)} />
+
+  <div class="flex justify-end">
+    <RegistButton />
+  </div>
 </div>
 
 <Modal bind:open={showModal} size="lg" backdrop="static">
